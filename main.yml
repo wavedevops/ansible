@@ -1,4 +1,4 @@
-- name: RoboShop Setup
+- name: Expense app Setup
   hosts: all
   become: yes
   serial: 1
