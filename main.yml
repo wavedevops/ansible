@@ -2,6 +2,6 @@
 - name: Expense app Setup
   hosts:
   become: yes
-#  serial: 1
+  serial: 1
   roles:
     - "{{ROLE_NAME}}"
