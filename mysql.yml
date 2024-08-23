@@ -1,0 +1,16 @@
+- name: set up the mysql server
+  hosts: localhost
+  become: true
+  tasks:
+   - name: installing mysql
+     ansible.builtin.dnf:
+      name: "{{ item.name }}"
+      state: "{{ item.state }}"
+     loop:
+      - {name: 'mysql', state: 'latest'}
+   
+   - name: enamel and start mysql server
+     ansible.builtin.service:
+      name: mysqld
+      state: started
+      enable: yes
