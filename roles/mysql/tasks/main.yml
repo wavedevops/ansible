@@ -9,11 +9,9 @@
   ansible.builtin.dnf:
    name: mysql
    state: latest
- 
- 
-- name: enamel and start mysql server
+
+- name: Enable and start MySQL server
   ansible.builtin.service:
    name: mysqld
    state: started
-   enable: yes
-  
+   enabled: yes
