@@ -1,7 +1,7 @@
 # it is a single playbook. run as a single task at time "{{ROLE_NAME}}" it is a variable that to give a value into command line
 - name: Expense app Setup
-  hosts: all
+  hosts:
   become: yes
-  serial: 1
+#  serial: 1
   roles:
     - "{{ROLE_NAME}}"
