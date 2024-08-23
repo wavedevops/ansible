@@ -1,5 +1,18 @@
-- name: Frontend Setup
+# it is multi playbook run as multiple tasks at one time.
+- name: Frontend Setup  # task 1
   hosts: FRONTEND
   become: true
   roles:
    - frontend
+
+#- name: backend Setup  # task 2
+#  hosts: BACKEND
+#  become: true
+#  roles:
+#   - backend
+
+#- name: backend Setup  # task 3
+#  hosts: MYSQL
+#  become: true
+#  roles:
+#   - mysql
