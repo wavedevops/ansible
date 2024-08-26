@@ -11,9 +11,8 @@
 
 - name: install python dependencies
   ansible.builtin.pip:
-   name:
-    - pymysql
-  executable: pip3.9
+   name: pymysql
+   executable: pip3.9
    
 - name: chick db connection
   community.mysql.mysql_info:
