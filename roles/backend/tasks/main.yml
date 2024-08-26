@@ -20,5 +20,5 @@
 
 - name: Add expense user
   ansible.builtin.user:
-   name:
+   name: expense
   when: USER.rc is 1
