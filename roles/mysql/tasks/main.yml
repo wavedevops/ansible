@@ -13,7 +13,7 @@
   ansible.builtin.pip:
    name: PyMySQL
    executable: pip3.9
-   
+
 - name: chick db connection
   community.mysql.mysql_info:
    login_user: root
@@ -26,11 +26,11 @@
 - name: print output
   ansible.builtin.debug:
    msg: "output {{mysql_output}}"
-   
+
 - name: setup root password
   ansible.builtin.shell: mysql_secure_installation --set-root-pass ExpenseApp@1
   when: mysql_output.failed is true
-  
+
 - name: Reload systemd daemon
   ansible.builtin.systemd:
    daemon_reload: yes
