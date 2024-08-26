@@ -9,11 +9,11 @@
    state: started
    enabled: yes
 
-- name: Get MySQL version with non-default credentials
+- name:
   community.mysql.mysql_info:
    login_user: root
    login_password: ExpenseApp@1
    login_host: mysql.chowdary.cloud
    filter: version
   ignore_errors: true
-  register: mysql-output
+  register: mysql_output
