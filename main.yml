@@ -1,6 +1,6 @@
 # it is a single playbook. run as a single task at time "{{ROLE_NAME}}" it is a variable that to give a value into command line
 - name: Expense app Setup
-  hosts: all
+  hosts: mysql
   become: yes
 #  serial: 1
   roles:
