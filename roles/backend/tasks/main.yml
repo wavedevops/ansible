@@ -65,8 +65,8 @@
 #   name: all
 #  ignore_errors: true
 
-- name:
-   ansible.builtin.shell: mysql -h mysql.chowdary.cloud -uroot -pExpenseApp@1 < /app/schema/backend.sql
+- name: set up for db conaction
+  ansible.builtin.shell: mysql -h mysql.chowdary.cloud -uroot -pExpenseApp@1 < /app/schema/backend.sql
 
 - name: daemon reload
   ansible.builtin.systemd:
