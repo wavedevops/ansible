@@ -7,7 +7,7 @@
    
    - name: Stop mysql service
      ansible.builtin.service:
-      name: mysqld
+      name: mysql
       state: stopped
    
    - name: Remove mysql packages
