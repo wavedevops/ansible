@@ -1,12 +1,4 @@
-- name: Copy MySQL Repo
-  ansible.builtin.copy:
-   src: mysql.repo
-   dest: /etc/yum.repos.d/mysql.repo
-
-- name: disable mysql
-  ansible.builtin.shell: dnf module disable mysql -y
-
-- name: Install MySQL Server
+- name: install mysql
   ansible.builtin.dnf:
-   name: mysql-community-server
-   state: present
+   name: mysql
+   state: latest
