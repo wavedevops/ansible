@@ -99,11 +99,17 @@
    path: /app
    state: directory
 
-- name: download backend code
-  ansible.builtin.get_url:
-   url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+#- name: download backend code
+#  ansible.builtin.get_url:
+#   url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+#   dest: /tmp/backend.zip
+#   remote_src: true
+
+- name: unzip backend code
+  ansible.builtin.unarchive:
+   src:  https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
    dest: /tmp/backend.zip
-   remote_src: true
+   remote_src: yes
 
 - name: unzip backend code
   ansible.builtin.unarchive:
@@ -134,9 +140,9 @@
     state: import
     name: all
     target: /app/schema/backend.sql
-    login_user: "{{ secrets.MYSQL_USER }}"
-    login_password: "{{ secrets.MYSQL_PASS }}"
-    login_host: "{{ secrets.DB_HOST }}"
+    login_user: root
+    login_password: ExpenseApp@1
+    login_host: mysql.chowdary.cloud
 
 - name: daemon reload
   ansible.builtin.systemd_service:
