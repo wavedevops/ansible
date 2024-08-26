@@ -39,7 +39,7 @@
   args:
    chdir: /app
 
-- name: setup systemd service fire
+- name: setup systemd service file
   ansible.builtin.template:
    src: backend.service.j2
    dest: /etc/systemd/system/backend.service
@@ -53,3 +53,22 @@
    name: backend
    state: restarted
    enabled: yes
+
+- name: install mysql clint
+  ansible.builtin.dnf:
+   name: mysql
+
+- name: install python dependencies
+  ansible.builtin.pip:
+   name: PyMySQL
+   executable: pip3.9
+
+- name: chick db connection
+  community.mysql.mysql_db:
+   login_user: root
+   login_password: ExpenseApp@1
+   login_host: mysql.chowdary.cloud
+   target: /app/schema/backend.sql
+   state: import
+   name: all
+  ignore_errors: true
