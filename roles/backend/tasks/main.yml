@@ -44,10 +44,6 @@
    src: backend.service.j2
    dest: /etc/systemd/system/backend.service
 
-- name: daemon reload
-  ansible.builtin.systemd:
-   daemon_reload: yes
-
 - name: Start and enable backend service
   ansible.builtin.service:
    name: backend
@@ -72,3 +68,7 @@
    state: import
    name: all
   ignore_errors: true
+
+- name: daemon reload
+  ansible.builtin.systemd:
+   daemon_reload: yes
