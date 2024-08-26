@@ -1,36 +1,65 @@
-- name: install mysql
+#- name: install mysql
+#  ansible.builtin.dnf:
+#   name: mysql
+#   state: latest
+#
+#- name: Start mysql service
+#  ansible.builtin.service:
+#   name: mysqld
+#   state: started
+#   enabled: yes
+#
+#- name: install python dependencies
+#  ansible.builtin.pip:
+#   name: PyMySQL
+#   executable: pip3.9
+#
+#- name: chick db connection
+#  community.mysql.mysql_info:
+#   login_user: root
+#   login_password: ExpenseApp@1
+#   login_host: mysql.chowdary.cloud
+#   filter: version
+#  ignore_errors: true
+#  register: mysql_output
+#
+#- name: print output
+#  ansible.builtin.debug:
+#   msg: "output {{mysql_output}}"
+#
+#- name: setup root password
+#  ansible.builtin.shell: mysql_secure_installation --set-root-pass ExpenseApp@1
+#  when: mysql_output.failed is true
+#
+#- name: Reload systemd daemon
+#  ansible.builtin.systemd:
+#   daemon_reload: yes
+#
+
+
+
+- name: Disable MySQL DNF module
   ansible.builtin.dnf:
    name: mysql
-   state: latest
+   state: absent
 
-- name: Start mysql service
-  ansible.builtin.service:
+- name: copy mysql repository
+  ansible.builtin.file:
+   sec: mysql.repo
+   dest: /etc/yum.repos.d/mysql.repo
+
+- name: Install MySQL Community Server
+  ansible.builtin.dnf:
+   name: mysql-community-server
+   state: present
+
+- name: Enable MySQL service to start on boot
+  ansible.builtin.systemd:
    name: mysqld
-   state: started
    enabled: yes
 
-- name: install python dependencies
-  ansible.builtin.pip:
-   name: PyMySQL
-   executable: pip3.9
-
-- name: chick db connection
-  community.mysql.mysql_info:
-   login_user: root
-   login_password: ExpenseApp@1
-   login_host: mysql.chowdary.cloud
-   filter: version
-  ignore_errors: true
-  register: mysql_output
-
-- name: print output
-  ansible.builtin.debug:
-   msg: "output {{mysql_output}}"
-
-- name: setup root password
-  ansible.builtin.shell: mysql_secure_installation --set-root-pass ExpenseApp@1
-  when: mysql_output.failed is true
-
-- name: Reload systemd daemon
+- name: Start MySQL service
   ansible.builtin.systemd:
-   daemon_reload: yes
+   name: mysqld
+   state: started
+
