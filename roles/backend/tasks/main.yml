@@ -17,3 +17,8 @@
 - name: prent the user data
   ansible.builtin.debug:
    msg: "output {{ USER }}"
+
+- name: Add expense user
+  ansible.builtin.user:
+   name:
+  when: USER.rc is 1
