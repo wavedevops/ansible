@@ -1,21 +1,21 @@
-#- name: install mysql
-#  ansible.builtin.dnf:
-#   name: mysql
-#   state: latest
-#
-#- name: Start mysql service
-#  ansible.builtin.service:
-#   name: mysqld
-#   state: started
-#   enabled: yes
-
-- name: Install MySQL
+- name: install mysql
   ansible.builtin.dnf:
-   name: mysql-server  # Make sure this is the full package name
+   name: mysql
    state: latest
 
-- name: Start MySQL service
+- name: Start mysql service
   ansible.builtin.service:
-   name: mysql  # Update this to match the actual service name
+   name: mysqld
    state: started
    enabled: yes
+
+#- name: Install MySQL
+#  ansible.builtin.dnf:
+#   name: mysql-server  # Make sure this is the full package name
+#   state: latest
+#
+#- name: Start MySQL service
+#  ansible.builtin.service:
+#   name: mysql  # Update this to match the actual service name
+#   state: started
+#   enabled: yes
