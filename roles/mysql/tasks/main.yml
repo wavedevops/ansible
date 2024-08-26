@@ -38,28 +38,46 @@
 
 
 
-- name: Disable MySQL DNF module
-  ansible.builtin.dnf:
-   name: mysql
-   state: absent
+#- name: Disable MySQL DNF module
+#  ansible.builtin.dnf:
+#   name: mysql
+#   state: absent
+#
+#- name: copy mysql repository
+#  ansible.builtin.file:
+#   sec: mysql.repo
+#   dest: /etc/yum.repos.d/mysql.repo
+#
+#- name: Install MySQL Community Server
+#  ansible.builtin.dnf:
+#   name: mysql-community-server
+#   state: present
+#
+#- name: Enable MySQL service to start on boot
+#  ansible.builtin.systemd:
+#   name: mysqld
+#   enabled: yes
+#
+#- name: Start MySQL service
+#  ansible.builtin.systemd:
+#   name: mysqld
+#   state: started
+#
 
-- name: copy mysql repository
-  ansible.builtin.file:
-   sec: mysql.repo
-   dest: /etc/yum.repos.d/mysql.repo
 
-- name: Install MySQL Community Server
-  ansible.builtin.dnf:
-   name: mysql-community-server
-   state: present
 
-- name: Enable MySQL service to start on boot
-  ansible.builtin.systemd:
-   name: mysqld
-   enabled: yes
 
-- name: Start MySQL service
-  ansible.builtin.systemd:
-   name: mysqld
-   state: started
+ - name: Installing MySQL Server
+   ansible.builtin.dnf:
+     name: mysql-server
+     state: present
 
+ - name: Start MySQL Service
+   ansible.builtin.systemd_service:
+     name: mysqld
+     state: restarted
+     enabled: true
+
+ - name: Set Root Password
+   ansible.builtin.shell: mysql_secure_installation --set-root-pass ExpenseApp@1
+   ignore_errors: yes
