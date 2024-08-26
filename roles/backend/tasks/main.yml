@@ -1,0 +1,19 @@
+- name: disabled default NodeJS 16
+  ansible.builtin.shell: dnf module disable nodejs -y
+
+- name: enable Nodejs 20 version
+  ansible.builtin.shell: dnf module enable nodejs:20 -y
+
+- name: install Nodejs
+  ansible.builtin.dnf:
+   name: nodejs
+   state: installed
+
+- name: user all ready  exit or not
+  ansible.builtin.shell: id expense
+  ignore_errors: true
+  register: USER
+
+- name: prent the user data
+  ansible.builtin.debug:
+   msg: "output {{ USER }}"
