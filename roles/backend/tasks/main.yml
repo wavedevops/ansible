@@ -1,79 +1,150 @@
-- name: disabled default NodeJS 16
-  ansible.builtin.shell: dnf module disable nodejs -y
+#- name: disabled default NodeJS 16
+#  ansible.builtin.shell: dnf module disable nodejs -y
+#
+#- name: enable Nodejs 20 version
+#  ansible.builtin.shell: dnf module enable nodejs:20 -y
+#
+#- name: Install Node.js and MySQL
+#  ansible.builtin.dnf:
+#   name: "{{ item }}"
+#   state: installed
+#  loop:
+#   - nodejs
+#   - mysql
+#
+#- name: user all ready  exit or not
+#  ansible.builtin.shell: id expense
+#  ignore_errors: true
+#  register: USER
+#
+#- name: prent the user data
+#  ansible.builtin.debug:
+#   msg: "output {{ USER }}"
+#
+#- name: Add expense user
+#  ansible.builtin.user:
+#   name: expense
+#  when: USER.rc != 0
+#
+#- name: Create a directory
+#  ansible.builtin.file:
+#   path: /app
+#   state: directory
+#
+#- name: Download backend files
+#  ansible.builtin.unarchive:
+#   src: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+#   dest: /app
+#   remote_src: yes
+#
+#- name: install npm dependencies
+#  ansible.builtin.shell: npm install
+#  args:
+#   chdir: /app
+#
+#- name: setup systemd service file
+#  ansible.builtin.template:
+#   src: backend.service.j2
+#   dest: /etc/systemd/system/backend.service
+#
+#
+#- name: install python dependencies
+#  ansible.builtin.pip:
+#   name:
+#    - PyMySQL
+#    - cryptography
+#   executable: pip3.9
+#
+##- name: chick db connection
+##  community.mysql.mysql_db:
+##   login_user: root
+##   login_password: ExpenseApp@1
+##   login_host: mysql.chowdary.cloud
+##   target: /app/schema/backend.sql
+##   state: import
+##   name: all
+##  ignore_errors: true
+#
+#- name: set up for db conaction
+#  ansible.builtin.shell: mysql -h mysql.chowdary.cloud -uroot -pExpenseApp@1 < /app/schema/backend.sql
+#
+#- name: daemon reload
+#  ansible.builtin.systemd:
+#   daemon_reload: yes
+#
+#- name: Start and enable backend service
+#  ansible.builtin.service:
+#   name: backend
+#   state: restarted
+#   enabled: yes
 
-- name: enable Nodejs 20 version
-  ansible.builtin.shell: dnf module enable nodejs:20 -y
 
-- name: Install Node.js and MySQL
-  ansible.builtin.dnf:
+- name: disable default nodejs
+  ansible.builtin.command: dnf module disable nodejs -y
+
+- name: enable nodejs:20
+  ansible.builtin.command: dnf module enable nodejs:20 -y
+
+- name: install nodejs
+  ansible.builtin.dnf: # only works for Redhat family
    name: "{{ item }}"
    state: installed
   loop:
    - nodejs
    - mysql
 
-- name: user all ready  exit or not
-  ansible.builtin.shell: id expense
-  ignore_errors: true
-  register: USER
-
-- name: prent the user data
-  ansible.builtin.debug:
-   msg: "output {{ USER }}"
-
-- name: Add expense user
+- name: create expense user
   ansible.builtin.user:
    name: expense
-  when: USER.rc != 0
 
-- name: Create a directory
+- name: create app directory
   ansible.builtin.file:
    path: /app
    state: directory
 
-- name: Download backend files
+- name: download backend code
+  ansible.builtin.get_url:
+   url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+   dest: /tmp/backend.zip
+
+- name: unzip backend code
   ansible.builtin.unarchive:
-   src: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+   src: /tmp/backend.zip # by default checks in ansible server
    dest: /app
    remote_src: yes
 
 - name: install npm dependencies
-  ansible.builtin.shell: npm install
+  ansible.builtin.command: npm install
   args:
    chdir: /app
 
-- name: setup systemd service file
-  ansible.builtin.template:
-   src: backend.service.j2
+- name: copy backend service
+  ansible.builtin.copy:
+   src: backend.service
    dest: /etc/systemd/system/backend.service
 
-
-- name: install python dependencies
+- name: install python mysql dependencies
   ansible.builtin.pip:
    name:
-    - PyMySQL
+    - PyMySQL # to connect MySQL DB from Ansible
     - cryptography
-   executable: pip3.9
+   executable: pip3.9 # pip3.11 if python version is 3.11
 
-#- name: chick db connection
-#  community.mysql.mysql_db:
-#   login_user: root
-#   login_password: ExpenseApp@1
-#   login_host: mysql.chowdary.cloud
-#   target: /app/schema/backend.sql
-#   state: import
-#   name: all
-#  ignore_errors: true
-
-- name: set up for db conaction
-  ansible.builtin.shell: mysql -h mysql.chowdary.cloud -uroot -pExpenseApp@1 < /app/schema/backend.sql
+- name: import data into mysql
+  community.mysql.mysql_db:
+   login_user: root
+   login_password: ExpenseApp@1
+   login_host: mysql.chowdary.cloud
+   target: /app/schema/backend.sql
+   state: import
+   name: all
 
 - name: daemon reload
-  ansible.builtin.systemd:
-   daemon_reload: yes
+  ansible.builtin.systemd_service:
+   daemon_reload: true
 
-- name: Start and enable backend service
+- name: start and enable backend service
   ansible.builtin.service:
    name: backend
-   state: restarted
+   state: started
    enabled: yes
