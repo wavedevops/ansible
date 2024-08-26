@@ -85,13 +85,10 @@
 - name: enable nodejs:20
   ansible.builtin.command: dnf module enable nodejs:20 -y
 
-- name: install nodejs
-  ansible.builtin.dnf: # only works for Redhat family
-   name: "{{ item }}"
-   state: latest
-  loop:
-   - nodejs
-   - mysql
+- name: Install NodeJS
+  ansible.builtin.dnf:
+    name: nodejs
+    state: present
 
 - name: create expense user
   ansible.builtin.user:
@@ -106,6 +103,7 @@
   ansible.builtin.get_url:
    url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
    dest: /tmp/backend.zip
+   remote_src: true
 
 - name: unzip backend code
   ansible.builtin.unarchive:
@@ -118,26 +116,27 @@
   args:
    chdir: /app
 
-- name: copy backend service
+
+- name: Copy Backend Service file
   ansible.builtin.template:
-   src: backend.service.j2
-   dest: /etc/systemd/system/backend.service
+    src: backend.service
+    dest: /etc/systemd/system/backend.service
+#
+- name: Install MySQL Client & MySQL Python Module
+  ansible.builtin.dnf:
+    name:
+      - mysql
+      - python3-PyMySQL
+    state: present
 
-- name: install python mysql dependencies
-  ansible.builtin.pip:
-   name:
-    - PyMySQL # to connect MySQL DB from Ansible
-    - cryptography
-   executable: pip3.9 # pip3.11 if python version is 3.11
-
-- name: import data into mysql
+- name: Load Schema
   community.mysql.mysql_db:
-   login_user: root
-   login_password: ExpenseApp@1
-   login_host: mysql.chowdary.cloud
-   target: /app/schema/backend.sql
-   state: import
-   name: all
+    state: import
+    name: all
+    target: /app/schema/backend.sql
+    login_user: "{{ secrets.MYSQL_USER }}"
+    login_password: "{{ secrets.MYSQL_PASS }}"
+    login_host: "{{ secrets.DB_HOST }}"
 
 - name: daemon reload
   ansible.builtin.systemd_service:
