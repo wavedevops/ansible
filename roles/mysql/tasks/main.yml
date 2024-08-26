@@ -1,10 +1,10 @@
-- name: disable mysql
-  ansible.builtin.shell: dnf module disable mysql -y
-
 - name: copy mysql repo
   ansible.builtin.template:
    src: mysql.repo
    dest: /etc/yum.repos.d/mysql.repo
+
+- name: disable mysql
+  ansible.builtin.shell: dnf module disable mysql -y
 
 - name: Install MySQL Server
   ansible.builtin.dnf:
