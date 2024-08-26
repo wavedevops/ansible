@@ -11,7 +11,7 @@
 #  roles:
 #   - backend
 #
-- name: backend Setup  # task 3
+- name: mysql Setup  # task 3
   hosts: mysql
   become: true
   roles:
