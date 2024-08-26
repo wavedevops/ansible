@@ -5,9 +5,8 @@
   ansible.builtin.template:
    src: mysql.repo
    dest: /etc/yum.repos.d/mysql.repo
-   
-   
-#- name: install mysql
-#  ansible.builtin.dnf:
-#   name: mysql
-#   state: latest
+
+- name: install mysql
+  ansible.builtin.dnf:
+   name: mysql-community-server
+   state: latest
