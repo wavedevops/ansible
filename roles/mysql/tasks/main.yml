@@ -9,7 +9,7 @@
    state: started
    enabled: yes
 
-- name:
+- name: chick db connection
   community.mysql.mysql_info:
    login_user: root
    login_password: ExpenseApp@1
@@ -17,3 +17,7 @@
    filter: version
   ignore_errors: true
   register: mysql_output
+
+- name: print output
+  ansible.builtin.debug:
+   msg: "output {{mysql_output}}"
