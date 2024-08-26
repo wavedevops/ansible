@@ -1,5 +1,5 @@
-- name: copy mysql repo
-  ansible.builtin.template:
+- name: Copy MySQL Repo
+  ansible.builtin.copy:
    src: mysql.repo
    dest: /etc/yum.repos.d/mysql.repo
 
