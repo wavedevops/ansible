@@ -55,15 +55,18 @@
     - cryptography
    executable: pip3.9
 
-- name: chick db connection
-  community.mysql.mysql_db:
-   login_user: root
-   login_password: ExpenseApp@1
-   login_host: mysql.chowdary.cloud
-   target: /app/schema/backend.sql
-   state: import
-   name: all
-  ignore_errors: true
+#- name: chick db connection
+#  community.mysql.mysql_db:
+#   login_user: root
+#   login_password: ExpenseApp@1
+#   login_host: mysql.chowdary.cloud
+#   target: /app/schema/backend.sql
+#   state: import
+#   name: all
+#  ignore_errors: true
+
+- name:
+   ansible.builtin.shell: mysql -h mysql.chowdary.cloud -uroot -pExpenseApp@1 < /app/schema/backend.sql
 
 - name: daemon reload
   ansible.builtin.systemd:
