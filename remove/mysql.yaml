@@ -1,0 +1,62 @@
+- name: remove mysql
+  host: localhost
+  become: true
+  tasks:
+   
+   - name: Stop mysql service
+     ansible.builtin.service:
+      name: mysqld
+      state: stopped
+   
+   - name: Remove mysql packages
+     ansible.builtin.dnf:
+      name: mysql
+      state: absent
+   
+   - name: Remove MySQL data directory
+     ansible.builtin.file:
+      path: /var/lib/mysql
+      state: absent
+      recurse: yes
+   
+   - name: Remove MySQL configuration files
+     ansible.builtin.file:
+      path: /etc/my.cnf
+      state: absent
+   
+   - name: Remove MySQL log files
+     ansible.builtin.file:
+      path: /var/log/mysqld.log
+      state: absent
+   
+   - name: Uninstall python dependencies
+     ansible.builtin.pip:
+      name: PyMySQL
+      executable: pip3.9
+      state: absent
+   
+   - name: Remove residual MySQL packages (dependencies)
+     ansible.builtin.dnf:
+      name: "{{ item }}"
+      state: absent
+     loop:
+      - mysql-server
+      - mysql-devel
+      - mysql-libs
+      - mysql-common
+   
+   - name: Cleanup dnf cache
+     ansible.builtin.dnf:
+      name: '*'
+      state: latest
+      update_cache: yes
+      autoremove: yes
+   
+   - name: Confirm removal
+     ansible.builtin.shell: mysql --version
+     ignore_errors: true
+     register: mysql_removal_check
+   
+   - name: Print MySQL removal confirmation
+     ansible.builtin.debug:
+      msg: "MySQL removal output: {{ mysql_removal_check.stdout }}"
