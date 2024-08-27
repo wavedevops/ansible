@@ -1,15 +1,14 @@
-# it is multi playbook run as multiple tasks at one time.
-#- name: Frontend Setup  # task 1
-#  hosts: frontend
-#  become: true
-#  roles:
-#   - frontend
-#
-#- name: backend Setup  # task 2
-#  hosts: backend
-#  become: true
-#  roles:
-#   - backend
+- name: Frontend Setup  # task 1
+  hosts: frontend
+  become: true
+  roles:
+   - frontend
+
+- name: backend Setup  # task 2
+  hosts: backend
+  become: true
+  roles:
+   - backend
 #
 - name: mysql Setup  # task 3
   hosts: mysql
