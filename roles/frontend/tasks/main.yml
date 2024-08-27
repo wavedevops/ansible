@@ -20,6 +20,11 @@
    dest: /usr/share/nginx/html/
    remote_src: true
 
+- name: copy frontend conf file
+  ansible.builtin.template:
+   sec: expense.conf
+   dest: /etc/nginx/default.d/expense.conf
+
 - name: start nginx service
   ansible.builtin.service:
    name: nginx
