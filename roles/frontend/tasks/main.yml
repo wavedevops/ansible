@@ -3,30 +3,26 @@
    name: nginx
    state: latest
 
-#- name: start nginx service
-#  ansible.builtin.service:
-#   name: nginx
-#   state: started
-#   enable: yes
-#
+- name: start nginx service
+  ansible.builtin.service:
+   name: nginx
+   state: started
+   enable: yes
+
 - name: remove old nginx content
   ansible.builtin.file:
    path: /usr/share/nginx/html/*
    state: absent
-   
+
 - name: download frontend content
   ansible.builtin.unarchive:
    src: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
    dest: /usr/share/nginx/html/
    remote_src: true
 
-- name: copy frontend conf file
+- name: copy backend conf
   ansible.builtin.template:
-   sec: expense.conf
+   src: expense.conf
    dest: /etc/nginx/default.d/expense.conf
-
-- name: start nginx service
-  ansible.builtin.service:
-   name: nginx
-   state: restarted
-   enable: yes
+  notify:
+   - restart nginx
