@@ -1,4 +1,4 @@
 - name: 
-  hoste: all
+  hosts: all
   roles:
     - test
