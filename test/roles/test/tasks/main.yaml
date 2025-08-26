@@ -1,0 +1,3 @@
+- name: this is sample check
+  ansible.builtin.debug:
+  mag: i am from Roles
