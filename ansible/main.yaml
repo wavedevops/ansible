@@ -18,30 +18,19 @@
 # 1. play level vars are access in hole play book 
 #==================================================================
 ##################################################################
-# - name: vars in task level
-#   hosts: myservers
-#   become: true
-#   tasks:
-#     - name: vars in task level
-#       ansible.builtin.debug:
-#         msg: names in vars - {{NAME}}
-#       vaers:
-#         NAME:
-#           - hari
-#           - prasad
-#           - chandra
 - name: vars in task level
   hosts: myservers
   become: true
   tasks:
     - name: vars in task level
       ansible.builtin.debug:
-        msg: "names in vars - {{ NAME }}"
+        msg: "names in vars - {{ NAME }} age is {{AGE}}"
       vars:
         NAME:
           - hari
           - prasad
           - chandra
+        AGE: 25
 
 #==================================================================
 # 1. task level vars are access in only task only 
