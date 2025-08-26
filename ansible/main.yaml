@@ -1,4 +1,5 @@
-- name: 
+- name: Run test role
   hosts: all
+  become: yes        # optional, if you need sudo
   roles:
     - test
