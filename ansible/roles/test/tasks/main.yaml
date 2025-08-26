@@ -1,3 +1,3 @@
 - name: this is test Role
   ansible.builtin.debug:
-    msg: "this is from test"
+    msg: this is from "{{ componet }}"
