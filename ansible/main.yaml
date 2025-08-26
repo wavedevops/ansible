@@ -3,3 +3,15 @@
   become: yes        # optional, if you need sudo
   roles:
     - test
+---
+
+- name: vars in play level 
+  hosts: myservers
+  become: yes
+  vars:
+    URL: xyz.com
+  tasks:
+    - name: this is to test  variable from play level
+      ansible.builtin.debug:
+        msg: this is {{URL}}
+---
