@@ -1,0 +1,22 @@
+- name: set hostname
+  ansible.builtin.shell: set-prompt redis
+
+- name: disable old and enable new module
+  ansible.builtin.shell: dnf module disable redis -y ; dnf module enable redis:7 -y
+
+- name: install redis
+  ansible.builtin.dnf:
+    name: redis
+    state: installed
+
+- name: Update listen address
+  ansible.builtin.replace:
+    src: /etc/redis/redis.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: start and enable redis
+  ansible.builtin.systemd:
+    name: redis
+    state: restart
+    enabled: true

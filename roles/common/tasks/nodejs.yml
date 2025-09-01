@@ -1,0 +1,16 @@
+- name: set hostname
+  ansible.builtin.shell: set-prompt {{ component }}
+
+- name: Install nodejs
+  ansible.builtin.dnf:
+    name: nodejs
+    state: installed
+
+- name: import task app-prereq
+  ansible.builtin.import_tasks:
+    file: app-prereq.yml
+
+- name: Install NodeJS Dependencies
+  ansible.builtin.shell: npm install
+  args:
+    chdir: /app
