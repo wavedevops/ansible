@@ -1,3 +1,6 @@
+- name: set hostname
+  ansible.builtin.shell: set-prompt mongodb
+
 - name: copy mongo repo file
   ansible.builtin.copy:
     src: mongo.repo
