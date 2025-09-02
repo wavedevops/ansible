@@ -16,24 +16,24 @@
 #  roles:
 #    - catalogue
 
-#- name: Setup Catalogue
+#- name: Setup redis
 #  hosts: redis
 #  become: true
 #  roles:
 #    - redis
 
-#- name: Setup Catalogue
+#- name: Setup user
 #  hosts: user
 #  become: true
 #  roles:
 #    - user
-- name: Setup Catalogue
+- name: Setup cart
   hosts: cart
   become: true
   roles:
     - cart
 
-- name: Setup Catalogue
+- name: Setup mysql
   hosts: mysql
   become: true
   roles:
