@@ -27,14 +27,32 @@
 #  become: true
 #  roles:
 #    - user
-- name: Setup cart
-  hosts: cart
-  become: true
-  roles:
-    - cart
+#- name: Setup cart
+#  hosts: cart
+#  become: true
+#  roles:
+#    - cart
+#
+#- name: Setup mysql
+#  hosts: mysql
+#  become: true
+#  roles:
+#    - mysql
 
-- name: Setup mysql
-  hosts: mysql
+- name: Setup shipping
+  hosts: shipping
   become: true
   roles:
-    - mysql
+    - shipping
+
+#- name: Setup shipping
+#  hosts: rabbitmq
+#  become: true
+#  roles:
+#    - rabbitmq
+#
+#- name: Setup shipping
+#  hosts: payment
+#  become: true
+#  roles:
+#    - payment
