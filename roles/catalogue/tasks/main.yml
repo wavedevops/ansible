@@ -14,5 +14,7 @@
     name: mongodb-mongosh
     state: installed
 
+
 - name: load schema
-  anisble.builtin.shell: mongosh --host {{ mongo_host }} </app/db/master-data.js
+  ansible.builtin.shell: mongosh --host {{ mongo_host }} </app/db/master-data.js
+
