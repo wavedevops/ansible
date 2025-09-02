@@ -1,8 +1,8 @@
-- name: Setup frontend
-  hosts: frontend
-  become: true
-  roles:
-    - frontend
+#- name: Setup frontend
+#  hosts: frontend
+#  become: true
+#  roles:
+#    - frontend
 
 #- name: Setup mongodb
 #  hosts: mongodb
@@ -16,12 +16,12 @@
 #  roles:
 #    - catalogue
 #
-#- name: Setup redis
-#  hosts: redis
-#  become: true
-#  roles:
-#    - redis
-#
+- name: Setup redis
+  hosts: redis
+  become: true
+  roles:
+    - redis
+
 #- name: Setup user
 #  hosts: user
 #  become: true
@@ -58,8 +58,9 @@
 #    - payment
 
 
-#- name: Setup frontend
-#  hosts: frontend
-#  become: true
-#  roles:
-#    - frontend
+- name: Setup frontend
+  hosts: frontend
+  become: true
+  roles:
+    - frontend
+
