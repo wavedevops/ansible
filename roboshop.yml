@@ -4,8 +4,14 @@
   roles:
     - frontend
 
-- name: Setup frontend
+- name: Setup mongodb
   hosts: mongodb
   become: true
   roles:
     - mongodb
+
+- name: Setup Catalogue
+  hosts: Catalogue
+  become: true
+  roles:
+    - catalogue
