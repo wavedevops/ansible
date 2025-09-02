@@ -1,8 +1,8 @@
-- name: Setup frontend
-  hosts: frontend
-  become: true
-  roles:
-    - frontend
+#- name: Setup frontend
+#  hosts: frontend
+#  become: true
+#  roles:
+#    - frontend
 
 #- name: Setup mongodb
 #  hosts: mongodb
@@ -45,14 +45,21 @@
   roles:
     - shipping
 
-#- name: Setup shipping
-#  hosts: rabbitmq
-#  become: true
-#  roles:
-#    - rabbitmq
-#
-#- name: Setup shipping
-#  hosts: payment
-#  become: true
-#  roles:
-#    - payment
+- name: Setup rabbitmq
+  hosts: rabbitmq
+  become: true
+  roles:
+    - rabbitmq
+
+- name: Setup payment
+  hosts: payment
+  become: true
+  roles:
+    - payment
+
+
+- name: Setup frontend
+  hosts: frontend
+  become: true
+  roles:
+    - frontend
