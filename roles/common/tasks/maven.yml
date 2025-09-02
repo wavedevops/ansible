@@ -1,9 +1,9 @@
 - name: set hostname
   ansible.builtin.shell: set-prompt {{ component }}
 
-- name: Install nodejs
+- name: Install {{ component }}
   ansible.builtin.dnf:
-    name: nodejs
+    name: maven
     state: installed
 
 - name: import task app-prereq
@@ -11,7 +11,7 @@
     file: app-prereq.yml
 
 - name: Install {{ component }} Dependencies
-  ansible.builtin.shell: npm install
+  ansible.builtin.shell: mvn clean package ; mv target/{{ component }}-1.0.jar {{ component }}.jar
   args:
     chdir: /app
 

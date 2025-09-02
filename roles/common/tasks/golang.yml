@@ -3,15 +3,16 @@
 
 - name: Install nodejs
   ansible.builtin.dnf:
-    name: nodejs
+    name: golang
     state: installed
+
 
 - name: import task app-prereq
   ansible.builtin.import_tasks:
     file: app-prereq.yml
 
 - name: Install {{ component }} Dependencies
-  ansible.builtin.shell: npm install
+  ansible.builtin.shell: go mod init dispatch ;go get ;go build
   args:
     chdir: /app
 
