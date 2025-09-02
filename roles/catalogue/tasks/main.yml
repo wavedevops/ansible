@@ -15,4 +15,4 @@
     state: installed
 
 - name: load schema
-  anisble.builtin.shell: mongosh --host MONGODB-SERVER-IPADDRESS </app/db/master-data.js
+  anisble.builtin.shell: mongosh --host {{ mongo_host }}  </app/db/master-data.js

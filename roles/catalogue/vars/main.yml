@@ -1,1 +1,2 @@
 component: catalogue
+mongo_host: mongodb-dev.durgasri.in
