@@ -1,7 +1,6 @@
 - name: set hostname
   ansible.builtin.shell: set-prompt {{ component }}
 
-
 - name: Install MySQL
   ansible.builtin.dnf:
     name: mysql-server

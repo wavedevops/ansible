@@ -27,3 +27,14 @@
 #  become: true
 #  roles:
 #    - user
+- name: Setup Catalogue
+  hosts: cart
+  become: true
+  roles:
+    - cart
+
+- name: Setup Catalogue
+  hosts: mysql
+  become: true
+  roles:
+    - mysql
