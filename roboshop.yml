@@ -16,8 +16,14 @@
 #  roles:
 #    - catalogue
 
+#- name: Setup Catalogue
+#  hosts: redis
+#  become: true
+#  roles:
+#    - redis
+
 - name: Setup Catalogue
-  hosts: redis
+  hosts: user
   become: true
   roles:
-    - redis
+    - user
