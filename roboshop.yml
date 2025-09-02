@@ -11,7 +11,7 @@
 #    - mongodb
 
 - name: Setup Catalogue
-  hosts: Catalogue
+  hosts: catalogue
   become: true
   roles:
     - catalogue
