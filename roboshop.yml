@@ -1,61 +1,61 @@
-#- name: Setup frontend
-#  hosts: frontend
+- name: Setup frontend
+  hosts: frontend
+  become: true
+  roles:
+    - frontend
+
+#- name: Setup mongodb
+#  hosts: mongodb
 #  become: true
 #  roles:
-#    - frontend
-
-- name: Setup mongodb
-  hosts: mongodb
-  become: true
-  roles:
-    - mongodb
-
-- name: Setup Catalogue
-  hosts: catalogue
-  become: true
-  roles:
-    - catalogue
-
-- name: Setup redis
-  hosts: redis
-  become: true
-  roles:
-    - redis
-
-- name: Setup user
-  hosts: user
-  become: true
-  roles:
-    - user
-- name: Setup cart
-  hosts: cart
-  become: true
-  roles:
-    - cart
-
-- name: Setup mysql
-  hosts: mysql
-  become: true
-  roles:
-    - mysql
-
-- name: Setup shipping
-  hosts: shipping
-  become: true
-  roles:
-    - shipping
-
-- name: Setup rabbitmq
-  hosts: rabbitmq
-  become: true
-  roles:
-    - rabbitmq
-
-- name: Setup payment
-  hosts: payment
-  become: true
-  roles:
-    - payment
+#    - mongodb
+#
+#- name: Setup Catalogue
+#  hosts: catalogue
+#  become: true
+#  roles:
+#    - catalogue
+#
+#- name: Setup redis
+#  hosts: redis
+#  become: true
+#  roles:
+#    - redis
+#
+#- name: Setup user
+#  hosts: user
+#  become: true
+#  roles:
+#    - user
+#- name: Setup cart
+#  hosts: cart
+#  become: true
+#  roles:
+#    - cart
+#
+#- name: Setup mysql
+#  hosts: mysql
+#  become: true
+#  roles:
+#    - mysql
+#
+#- name: Setup shipping
+#  hosts: shipping
+#  become: true
+#  roles:
+#    - shipping
+#
+#- name: Setup rabbitmq
+#  hosts: rabbitmq
+#  become: true
+#  roles:
+#    - rabbitmq
+#
+#- name: Setup payment
+#  hosts: payment
+#  become: true
+#  roles:
+#    - payment
 
 
 #- name: Setup frontend
