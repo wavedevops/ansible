@@ -1,8 +1,8 @@
-#- name: Setup frontend
-#  hosts: frontend
-#  become: true
-#  roles:
-#    - frontend
+- name: Setup frontend
+  hosts: frontend
+  become: true
+  roles:
+    - frontend
 
 #- name: Setup mongodb
 #  hosts: mongodb
@@ -22,8 +22,8 @@
 #  roles:
 #    - redis
 
-- name: Setup Catalogue
-  hosts: user
-  become: true
-  roles:
-    - user
+#- name: Setup Catalogue
+#  hosts: user
+#  become: true
+#  roles:
+#    - user
