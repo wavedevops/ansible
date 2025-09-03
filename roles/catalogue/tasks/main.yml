@@ -16,5 +16,5 @@
 
 
 - name: load schema
-  ansible.builtin.shell: mongosh --host {{ mongo_host }} </app/db/master-data.js
+  ansible.builtin.shell: mongosh --host {{ lookup('aws_ssm', '{{ env }}.catalogue.mongo_host', region='us-east-1' ) }} </app/db/master-data.js
 
