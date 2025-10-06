@@ -8,7 +8,7 @@
   tasks:
     - name: Show first user
       debug:
-        msg: "First user is {{ users[0] }}, Second user is {{user[1]}}"
+        msg: "First user is {{ users[0] }}, Second user is {{users[1]}}"
     
     - name: Show all users with loop
       debug:
