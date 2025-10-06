@@ -75,9 +75,10 @@
     
     - name: Show all fruits with numbering
       debug:
-        msg: "{{ loop.index }}. Fruit name is {{ item }}"
+        msg: " Fruit name is {{ item }}"
       loop: "{{ fruits }}"
       # Example: if you want a condition, you can register a real task first and use 'when'
 
 
 
+3
