@@ -26,10 +26,10 @@
         file: vars.yml
 
     - name: variable from file
-      debug:
+      ansible.builtin.debug:
         msg: "name - {{ name }}, age - {{ age }}, qualification - {{ qualification }}, medium - {{ medium }}"
 
 # variable from cli
 - name: variable from cli
   ansible.builtin.debug:
-    msg: "i am from cli {{ MY_NAME }}"
+    msg: i am from cli {{ MY_NAME }}
