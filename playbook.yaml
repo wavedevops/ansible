@@ -4,6 +4,13 @@
   vars:
     NAME: hari
   tasks:
-    - name: installing nginx
+    - name: variable from play level
       debug:
         msg: "{{ NAME }}"
+    
+    - name: variable from task level
+      debug:
+      vars:
+        user: admin
+        password: admin123
+        msg: user name is {{ user }}; password is {{ password }}
