@@ -32,4 +32,4 @@
 # variable from cli
 - name: variable from cli
   ansible.builtin.debug:
-    msg: i am from cli {{ MY_NAME }}
+    msg: "i am from cli {{ MY_NAME }}"
