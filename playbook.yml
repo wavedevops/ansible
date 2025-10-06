@@ -65,6 +65,6 @@
     - name: all fruits
       debug:
         msg: fruits names are  {{ item }}
-        loop: {{ fruits }}
+        loop: "{{ fruits }}"
 
 
