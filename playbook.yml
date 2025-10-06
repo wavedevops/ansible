@@ -33,3 +33,20 @@
     - name: variable from cli
       ansible.builtin.debug:
         msg: "i am from cli {{ MY_NAME }}"
+
+- name: variable from list example
+  hosts: localhost
+  vars:
+    users:
+      - Hari
+      - Chandra
+      - Prasad
+  tasks:
+    - name: Show first user
+      debug:
+        msg: "First user is {{ users[0] }}, Second user is {{user[1]}}"
+    
+    - name: Show all users with loop
+      debug:
+        msg: "User: {{ item }}"
+      loop: "{{ users }}"
