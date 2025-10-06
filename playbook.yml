@@ -93,11 +93,11 @@
         price: "30$"
         qty: "2kg"
   tasks:
-    - name: print all data of map of list data
-      debug:
-        msg:  Name is {{ fruits[0].name }}
-      
-#    - name: print all fruits data
+#    - name: print all data of map of list data
 #      debug:
-#        msg: "Name: {{ item.name }}, Price: {{ item.price }}, Quantity: {{ item.qty }}"
-#      loop: "{{ fruits }}"
+#        msg:  Name is {{ fruits[0].name }}
+      
+    - name: print all fruits data
+      debug:
+        msg: "Name: {{ item.name }}, Price: {{ item.price }}, Quantity: {{ item.qty }}"
+      loop: "{{ fruits }}"
