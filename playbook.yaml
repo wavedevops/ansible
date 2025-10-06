@@ -1,5 +1,5 @@
 - name: nginx automation
-  hosts: local
+  hosts: localhost
   become: yes
   vars:
     NAME: hari
