@@ -1,0 +1,9 @@
+- name: nginx automation
+  hosts: local
+  become: yes
+  vars:
+    NAME: hari
+  tasks:
+    - name: installing nginx
+      debug:
+        msg: "{{ NAME }}"
