@@ -1,39 +1,3 @@
-- name: nginx automation
-  hosts: localhost
-  become: yes
-
-  vars_files:        # <--- variable from vars files
-    - vars.yml
-  vars:
-    NAME: hari
-  tasks:
-#play level variable
-    - name: variable from play level
-      debug:
-        msg: "{{ NAME }}"
-
-#task level variable
-    - name: variable from task level
-      vars:
-        AGE: 26
-        msg: "user age is {{ AGE }}" # This is called variable interpolation or variable substitution — means one variable inside another variable using {{ }} syntax.
-      debug:
-        msg: "{{ msg }}"
-    
-# load variables from a file or directory dynamically during a playbook
-    - name: Include variables from file
-      ansible.builtin.include_vars:
-        file: vars.yml
-
-    - name: variable from file
-      ansible.builtin.debug:
-        msg: "name - {{ name }}, age - {{ age }}, qualification - {{ qualification }}, medium - {{ medium }}"
-
-## variable from cli
-#    - name: variable from cli
-#      ansible.builtin.debug:
-#        msg: "i am from cli {{ MY_NAME }}"
-
 - name: variable from list example
   hosts: localhost
   vars:
@@ -50,3 +14,31 @@
       debug:
         msg: "User: {{ item }}"
       loop: "{{ users }}"
+
+- name: variable from map example
+  hosts: localhost
+  vars:
+    student:
+      name: prasad
+      age: 20
+      class: 10
+  tasks:
+    - name: print variables from map
+      ansible.builtin.debug:
+        msg: "Name: {{ student.name }}, Age: {{ student.age }}, Class: {{ student.class }}"
+
+- name: variable from map list example  # looping from map object
+  hosts: localhost
+  vars:
+    students:
+      - name: prasad
+        age: 20
+        class: 10
+      - name: hari
+        age: 21
+        class: 11
+  tasks:
+    - name: print each student details
+      ansible.builtin.debug:
+        msg: "Name: {{ item.name }}, Age: {{ item.age }}, Class: {{ item.class }}"
+      loop: "{{ students }}"
