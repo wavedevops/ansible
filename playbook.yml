@@ -73,9 +73,27 @@
         msg: "First fruit is: {{ fruits[0] }}, Second fruit is: {{ fruits[1] }}"
       # no register here because debug cannot register
     
-    - name: Show all fruits with numbering
+    - name: Show all fruits
       debug:
         msg: " Fruit name is {{ item }}"
       loop: "{{ fruits }}"
       # Example: if you want a condition, you can register a real task first and use 'when'
 
+- name: map of list example
+  hosts: localhost
+  vars:
+    fruits:
+      - name: apple
+        price: "20$"
+        qty: "1kg"
+      - name: banana
+        price: "10$"
+        qty: "1.5kg"
+      - name: guava
+        price: "30$"
+        qty: "2kg"
+  tasks:
+    - name: print all data of map of list data
+      debug:
+        msg: "name of the fruits is {{fruits[0]}"
+      
