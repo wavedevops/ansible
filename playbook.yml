@@ -60,11 +60,11 @@
   tasks:
     - name: variable from list
       debug:
-        mag: first fruit is in {{fruits[0]}} second  fruit is in {{fruits[1] }},
+        mag: "first fruit is in {{fruits[0]}} second  fruit is in {{fruits[1] }}"
       
-    - name: all fruits
-      debug:
-        msg: fruits names are  {{ item }}
-        loop: {{ fruits }}
+#    - name: all fruits
+#      debug:
+#        msg: fruits names are  {{ item }}
+#        loop: {{ fruits }}
 
 
