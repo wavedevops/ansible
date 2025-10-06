@@ -6,7 +6,6 @@
     - vars.yml
   vars:
     NAME: hari
-    MY_NAME: "{{ MY_NAME }}"
   tasks:
 #play level variable
     - name: variable from play level
