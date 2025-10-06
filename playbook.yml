@@ -22,7 +22,5 @@
         file: vars.yml
     
     - name: variable from file
-      vars_files:
-        - vars.yml
       debug:
         msg: "name - {{ name }}, age - {{ age }}, qualification - {{ qualification }}, medium - {{ medium }}"
