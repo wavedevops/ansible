@@ -66,5 +66,6 @@
       debug:
         msg: "fruits names are  {{ item }}"
       loop: "{{ fruits }}"
+      when: result is succeeded
 
 
