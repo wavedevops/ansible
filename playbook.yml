@@ -58,25 +58,26 @@
 #        var: result
 #
 
-
 - name: variable from list
+  hosts: localhost
   vars:
     fruits:
       - apple
       - banana
       - guvva
       - grapes
-  hosts: localhost
+  
   tasks:
-    - name: variable from list
+    - name: Show first and second fruit
       debug:
-        msg: "first fruit is in: {{fruits[0]}}, second  fruit is in:{{fruits[1] }}"
-
-      
-    - name: all fruits
+        msg: "First fruit is: {{ fruits[0] }}, Second fruit is: {{ fruits[1] }}"
+      # no register here because debug cannot register
+    
+    - name: Show all fruits with numbering
       debug:
         msg: "{{ loop.index }}. Fruit name is {{ item }}"
       loop: "{{ fruits }}"
+      # Example: if you want a condition, you can register a real task first and use 'when'
 
 
 
