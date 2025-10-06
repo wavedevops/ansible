@@ -11,5 +11,5 @@
     - name: variable from task level
       debug:
       vars:
-        user: hari
-        msg: user name is {{ user }}
+        AGE: 26
+        msg: user name is {{ AGE }}
