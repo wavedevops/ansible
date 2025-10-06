@@ -46,6 +46,16 @@
 
 
 
+- name: Demo default keys
+  hosts: localhost
+  tasks:
+    - name: Run a simple command
+      command: echo "Hello"
+      register: result
+    
+    - name: Show all default keys
+      debug:
+        var: result
 
 
 
@@ -61,6 +71,7 @@
     - name: variable from list
       debug:
         msg: "first fruit is in: {{fruits[0]}}, second  fruit is in:{{fruits[1] }}"
+        register: result
       
     - name: all fruits
       debug:
