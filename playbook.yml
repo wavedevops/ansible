@@ -1,6 +1,8 @@
 - name: nginx automation
   hosts: localhost
   become: yes
+  vars_files:
+    - vars.yml
   vars:
     NAME: hari
   tasks:
@@ -17,9 +19,9 @@
       debug:
         msg: "{{ msg }}"
     
-#    - name: Include variables from file
-#      include_vars:
-#        file: vars.yml
+    - name: Include variables from file
+      include_vars:
+        file: vars.yml
     
     - name: variable from file
       debug:
