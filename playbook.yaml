@@ -9,7 +9,8 @@
         msg: "{{ NAME }}"
     
     - name: variable from task level
-      debug:
       vars:
         AGE: 26
-        msg: user name is {{ AGE }}
+        msg: "user age is {{ AGE }}"
+      debug:
+        msg: "{{ msg }}"
