@@ -18,9 +18,15 @@
         msg: "{{ msg }}"
 
 # variable from file
+#    - name: variable from file
+#      vars_files:
+#        - vars.yml
+#      debug:
+#        mag: name - {{ name }}, age - {{ age }},qualification - {{ qualification }}, medium - {{ medium }}
+#
+#
     - name: variable from file
       vars_files:
         - vars.yml
       debug:
-        mag: name - {{ name }}, age - {{ age }},qualification - {{ qualification }}, medium - {{ medium }}
-      
+        msg: "name - {{ name }}, age - {{ age }}, qualification - {{ qualification }}, medium - {{ medium }}"
