@@ -13,4 +13,3 @@
       vars:
         AGE: 26
         msg: user name is {{ AGE }}
-
