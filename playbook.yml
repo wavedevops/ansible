@@ -95,7 +95,7 @@
   tasks:
     - name: print all data of map of list data
       debug:
-        msg:  Name is "{{ fruits[0].name }}"
+        msg:  "Name is {{ fruits[0].name }}"
       
 #    - name: print all fruits data
 #      debug:
