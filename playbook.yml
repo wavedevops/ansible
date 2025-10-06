@@ -79,6 +79,3 @@
       loop: "{{ fruits }}"
       # Example: if you want a condition, you can register a real task first and use 'when'
 
-
-
-3
