@@ -16,7 +16,11 @@
         msg: "user age is {{ AGE }}" # This is called variable interpolation or variable substitution — means one variable inside another variable using {{ }} syntax.
       debug:
         msg: "{{ msg }}"
-
+    
+    - name: Include variables from file
+      include_vars:
+        file: vars.yml
+    
     - name: variable from file
       vars_files:
         - vars.yml
