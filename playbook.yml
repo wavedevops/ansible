@@ -95,5 +95,9 @@
   tasks:
     - name: print all data of map of list data
       debug:
-        msg: "name of the fruits is {{fruits[0].name}"
+        msg:  "Name: {{ fruits[0].name }}"
       
+#    - name: print all fruits data
+#      debug:
+#        msg: "Name: {{ item.name }}, Price: {{ item.price }}, Quantity: {{ item.qty }}"
+#      loop: "{{ fruits }}"
