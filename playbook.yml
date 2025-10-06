@@ -60,7 +60,7 @@
   tasks:
     - name: variable from list
       debug:
-        mag: "first fruit is in {{fruits[0]}} second  fruit is in {{fruits[1] }}"
+        msg: "first fruit is in {{fruits[0]}} second  fruit is in {{fruits[1] }}"
       
 #    - name: all fruits
 #      debug:
