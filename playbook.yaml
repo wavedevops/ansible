@@ -8,11 +8,8 @@
       debug:
         msg: "{{ NAME }}"
     
-    - name: Set user and password
-      ansible.builtin.set_fact:
-        user: admin
-        password: admin123
-    
-    - name: Show user and password
-      ansible.builtin.debug:
-        msg: "user name is {{ user }}; password is {{ password }}"
+    - name: variable from task level
+      debug:
+      vars:
+        user: hari
+        msg: user name is {{ user }}
