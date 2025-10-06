@@ -4,13 +4,15 @@
   vars:
     NAME: hari
   tasks:
+#play level variable
     - name: variable from play level
       debug:
         msg: "{{ NAME }}"
-    
+
+#task level variable
     - name: variable from task level
       vars:
         AGE: 26
-        msg: "user age is {{ AGE }}"
+        msg: "user age is {{ AGE }}" # This is called variable interpolation or variable substitution — means one variable inside another variable using {{ }} syntax.
       debug:
         msg: "{{ msg }}"
