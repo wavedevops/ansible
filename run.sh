@@ -4,4 +4,4 @@
 git pull
 
 # Run the Ansible playbook
-ansible-playbook -i all, playbook.yml "$1"
+ansible-playbook -i all, playbook.yml -e "$*"
