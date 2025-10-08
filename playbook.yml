@@ -19,10 +19,5 @@
         - prasad
         - chandra
       when: item == "chowdary"
-#    - name: install nginx
-#      ansible.builtin.apt:
-#        name: nginx
-#        state: absent
-#      when:
-#        - ansible_facts['os_family'] == "Debian"
+
 
