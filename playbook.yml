@@ -17,6 +17,7 @@
       loop:
         - hari
         - prasad
+        - chowdary
         - chandra
       when: item != "chowdary"
 
