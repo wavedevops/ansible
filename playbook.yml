@@ -6,10 +6,17 @@
     - vars.yml
   tasks:
 
-    - name: print msg
+    - name: print msg # single fact
       debug:
-        msg: "{{ ansible_facts['architecture'] }}" and ansible_facts
-
+        msg: "{{ ansible_facts['architecture'] }}"
+    
+    - name: print architecture and all facts
+      debug:
+        msg:
+          - "Architecture: {{ ansible_facts['architecture'] }}"
+          - "All facts: {{ ansible_facts }}"
+    
+    
     - name: install nginx
       ansible.builtin.apt:
         name: nginx
