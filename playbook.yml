@@ -1,103 +1,14 @@
-#- name: variable from list example
-#  hosts: localhost
-#  vars:
-#    users:
-#      - Hari
-#      - Chandra
-#      - Prasad
-#  tasks:
-#    - name: Show first user
-#      debug:
-#        msg: "First user is {{ users[0] }}, Second user is {{ users[1] }}"
-#
-#    - name: Show all users with loop
-#      debug:
-#        msg: "User: {{ item }}"
-#      loop: "{{ users }}"
-
-#- name: variable from map example
-#  hosts: localhost
-#  vars:
-#    student:
-#      name: prasad
-#      age: 20
-#      class: 10
-#  tasks:
-#    - name: print variables from map
-#      ansible.builtin.debug:
-#        msg: "Name: {{ student.name }}, Age: {{ student.age }}, Class: {{ student.class }}"
-#
-#- name: variable from map list example  # looping from map object
-#  hosts: localhost
-#  vars:
-#    students:
-#      - name: prasad
-#        age: 20
-#        class: 10
-#      - name: hari
-#        age: 21
-#        class: 11
-#  tasks:
-#    - name: print each student details
-#      ansible.builtin.debug:
-#        msg: "Name: {{ item.name }}, Age: {{ item.age }}, Class: {{ item.class }}"
-#      loop: "{{ students }}"
-
-
-
-
-#- name: Demo default keys
-#  hosts: localhost
-#  tasks:
-#    - name: Run a simple command
-#      command: echo "Hello"
-#      register: result
-#
-#    - name: Show all default keys
-#      debug:
-#        var: result
-#
-
-- name: variable from list
-  hosts: localhost
-  vars:
-    fruits:
-      - apple
-      - banana
-      - guvva
-      - grapes
-  
+- name: setup nginx configration
+  hots: localhost
+  vars_file:
+    - var.yml
   tasks:
-    - name: Show first and second fruit
-      debug:
-        msg: "First fruit is: {{ fruits[0] }}, Second fruit is: {{ fruits[1] }}"
-      # no register here because debug cannot register
+    - name: install nginx
+      ansible.builtin.dnf:
+        name: nginx
+        state: present
+        when: {{os_family}} == rhel
     
-    - name: Show all fruits
+    - name: print vars
       debug:
-        msg: " Fruit name is {{ item }}"
-      loop: "{{ fruits }}"
-      # Example: if you want a condition, you can register a real task first and use 'when'
-
-- name: map of list example
-  hosts: localhost
-  vars:
-    fruits:
-      - name: apple
-        price: "20$"
-        qty: "1kg"
-      - name: banana
-        price: "10$"
-        qty: "1.5kg"
-      - name: guava
-        price: "30$"
-        qty: "2kg"
-  tasks:
-#    - name: print all data of map of list data
-#      debug:
-#        msg:  Name is {{ fruits[0].name }}
-      
-    - name: print all fruits data
-      debug:
-        msg: "Name: {{ item.name }}, Price: {{ item.price }}, Quantity: {{ item.qty }}"
-      loop: "{{ fruits }}"
+        msg: "{{name}}"
