@@ -10,12 +10,13 @@
       debug:
         msg: "{{ ansible_facts['architecture'] }}"
     
-    - name: print architecture and all facts
+    - name: print architecture and all facts in YAML format
       debug:
         msg:
           - "Architecture: {{ ansible_facts['architecture'] }}"
-          - "All facts: {{ ansible_facts }}"
+          - "All facts:\n{{ ansible_facts | to_nice_yaml }}"
     
+        
     
     - name: install nginx
       ansible.builtin.apt:
