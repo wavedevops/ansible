@@ -12,7 +12,9 @@
     
     - name: print vars
       debug:
-        msg: "{{ name }}"
+        msg:
+          - "{{ name }}"
+          - - ansible_facts['ansible_architecture']
     
     - name: install nginx
       ansible.builtin.apt:
@@ -20,4 +22,4 @@
         state: present
       when:
         - ansible_facts['os_family'] == "Debian"
-
+  
