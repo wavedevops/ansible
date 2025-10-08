@@ -13,7 +13,6 @@
     - name: print vars
       debug:
         msg:
-          - "{{ name }}"
           - "{{ ansible_facts['ansible_architecture'] }}"
     
     - name: install nginx
