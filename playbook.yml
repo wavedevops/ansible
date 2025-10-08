@@ -1,7 +1,7 @@
 - name: setup nginx configration
   hots: localhost
   vars_file:
-    - var.yml
+    - vars.yml
   tasks:
     - name: install nginx
       ansible.builtin.dnf:
