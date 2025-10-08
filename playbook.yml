@@ -1,14 +1,14 @@
-- name: setup nginx configration
-  hots: localhost
-  vars_file:
+- name: setup nginx configuration
+  hosts: localhost
+  vars_files:
     - vars.yml
   tasks:
     - name: install nginx
       ansible.builtin.dnf:
         name: nginx
         state: present
-        when: {{os_family}} == rhel
+      when: os_family == "rhel"
     
     - name: print vars
       debug:
-        msg: "{{name}}"
+        msg: "{{ name }}"
