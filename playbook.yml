@@ -1,6 +1,7 @@
 - name: setup nginx configuration
   hosts: localhost
   become: yes
+  gather_facts: true
   vars_files:
     - vars.yml
   tasks:
