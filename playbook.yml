@@ -10,9 +10,10 @@
         state: present
       when: ansible_facts['os_family'] == "RedHat"
     
-    - name: print vars
+    - name: print msg
       debug:
-        msg: ansible_facts['ansible_architecture']
+        msg: "{{ ansible_facts['ansible_architecture'] }}"
+    
     
     - name: install nginx
       ansible.builtin.apt:
