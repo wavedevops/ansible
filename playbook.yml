@@ -14,7 +14,7 @@
       debug:
         msg:
           - "{{ name }}"
-          - - ansible_facts['ansible_architecture']
+          - "{{ ansible_facts['ansible_architecture'] }}"
     
     - name: install nginx
       ansible.builtin.apt:
