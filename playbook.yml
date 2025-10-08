@@ -10,10 +10,19 @@
       debug:
         msg: "{{ ansible_facts['architecture'] }}"
         
-    - name: install nginx
-      ansible.builtin.apt:
-        name: nginx
-        state: absent
-      when:
-        - ansible_facts['os_family'] == "Debian"
+    
+    - name : print loop
+      debug:
+        msg: names in { item }
+      loop:
+        - hari
+        - prasad
+        - chandra
+        
+#    - name: install nginx
+#      ansible.builtin.apt:
+#        name: nginx
+#        state: absent
+#      when:
+#        - ansible_facts['os_family'] == "Debian"
   
