@@ -18,6 +18,6 @@
         - hari
         - prasad
         - chandra
-      when: item == "chowdary"
+      when: item != "chowdary"
 
 
