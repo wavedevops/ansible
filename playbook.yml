@@ -14,7 +14,7 @@
       debug:
         msg:
           - "Architecture: {{ ansible_facts['architecture'] }}"
-          - "All facts:\n{{ ansible_facts | to_nice_yaml }}"
+          - "All facts:\n{{ ansible_facts | jq }}"
     
         
     
