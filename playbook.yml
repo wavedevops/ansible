@@ -5,15 +5,8 @@
   vars_files:
     - vars.yml
   tasks:
-    - name: install nginx
-      ansible.builtin.dnf:
-        name: nginx
-        state: present
-      when: ansible_facts['os_family'] == "RedHat"
-    
-- hosts: localhost
-  gather_facts: yes   # Make sure facts are gathered
-  tasks:
+
+
     - name: print msg
       debug:
         msg: "{{ ansible_facts['architecture'] }}"
