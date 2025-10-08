@@ -18,7 +18,7 @@
         - hari
         - prasad
         - chandra
-      when: item != "hari"
+      when: item != "chowdary"
 #    - name: install nginx
 #      ansible.builtin.apt:
 #        name: nginx
