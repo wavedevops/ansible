@@ -12,8 +12,7 @@
     
     - name: print vars
       debug:
-        msg:
-          - "{{ ansible_facts['ansible_architecture'] }}"
+        msg: ansible_facts['ansible_architecture']
     
     - name: install nginx
       ansible.builtin.apt:
