@@ -13,7 +13,8 @@
     
     - name : print loop
       debug:
-¸      loop:
+        msg: names in ¸{{ item }}
+      loop:
         - hari
         - prasad
         - chandra
