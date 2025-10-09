@@ -1,7 +1,7 @@
 variable "x" {
   default = [
     "name",
-    true,
+    "true",
     10
   ]
 }
