@@ -5,6 +5,11 @@ variable "x" {
     10
   ]
 }
-output "x1" {
+output "map" {
   value = var.x
+}
+
+output "map-a" {
+  depends_on = [var.x]
+  value = var.x[1]
 }
