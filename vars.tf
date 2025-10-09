@@ -10,3 +10,7 @@ variable "map" {
 output "print_all_variables" {
   value = var.map
 }
+
+output "print_particular_variables" {
+  value = var.map["Qualification"]
+}
