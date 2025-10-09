@@ -1,15 +1,12 @@
-variable "x" {
-  default = [
-    "name",
-    "true",
-    10
-  ]
-}
-output "map" {
-  value = var.x
+# map
+variable "map" {
+  default = {
+    Name = "prasad"
+    Age = 25
+    Qualification = undergraduate
+  }
 }
 
-output "map-a" {
-  depends_on = [var.x]
-  value = var.x[1]
+output "print_all_variables" {
+  value = var.map
 }
