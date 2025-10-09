@@ -12,5 +12,5 @@ output "print_all_variables" {
 }
 
 output "print_particular_variables" {
-  value = var.map["Qualification"]
+  value = var.map["Age"]
 }
