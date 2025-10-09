@@ -6,5 +6,5 @@ git pull
 if [ "$1" == "ansible" ]; then
   ansible-playbook -i all, playbook.yml
 elif [ "$1" == "terraform" ]; then
-  terraform apply -auto-approve
+  terraform init && terraform apply -auto-approve
 fi
