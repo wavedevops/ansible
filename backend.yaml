@@ -44,12 +44,11 @@
         src: backend.service
         dest: /etc/systemd/system/backend.service
 
-    
-    - name: install mysql clint
+    - name: Install MySQL client and PyMySQL
       ansible.builtin.dnf:
         name:
           - mysql
-          - python3-PyMySQL
+          - python3.11-PyMySQL
         state: present
 
     - name: Import database schema
