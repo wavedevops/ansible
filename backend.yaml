@@ -50,12 +50,12 @@
           - mysql
           - python3.11-PyMySQL
         state: present
-
-    - name: Import database schema
+    
+    - name: Load Schema
       community.mysql.mysql_db:
-        name: all
-        target: /app/db_hostschema/backend.sql
         state: import
+        name: all
+        target: /app/schema/backend.sql
         login_user: "{{ db_user }}"
         login_password: "{{ db_pass }}"
         login_host: "{{ db_hoste }}"
