@@ -51,14 +51,15 @@
           - python3.11-PyMySQL
         state: present
     
+    
     - name: Load Schema
-      community.mysql.mysql_db:
-        state: import
-        name: all
-        target: /app/schema/backend.sql
-        login_user: "{{ db_user }}"
-        login_password: "{{ db_pass }}"
-        login_host: "{{ db_hoste }}"
+      ansible.builtin.shell: mysql -h "{{ db_host }}" -u"{{ db_user }}" -p"{{ db_pass }}" < /app/schema/backend.sql
+      
+      vars:
+        db_host: 172.31.40.76
+        db_user: root
+        db_pass: ExpenseApp@1
+
 
     - name: Start backend service
       ansible.builtin.systemd_service:
