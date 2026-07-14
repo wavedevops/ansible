@@ -4,7 +4,7 @@
 
   vars:
     db_hoste: 172.31.40.76
-    db_password: ExpenseApp
+    db_pass: ExpenseApp
     db_user: root
 
   tasks:
