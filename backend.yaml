@@ -55,11 +55,11 @@
     - name: Import database schema
       community.mysql.mysql_db:
         name: all
-        target: /app/schema/backend.sql
+        target: /app/db_hostschema/backend.sql
         state: import
         login_user: "{{ db_user }}"
         login_password: "{{ db_pass }}"
-        login_host: "{{ db_host }}"
+        login_host: "{{ db_hoste }}"
 
     - name: Start backend service
       ansible.builtin.systemd_service:
