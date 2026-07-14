@@ -1,0 +1,37 @@
+- name: frontend
+  hosts: frontend  # hosts spelling
+  become: true
+  tasks:
+    - name: install nginx
+      ansible.builtin.dnf:
+        name: nginx
+        state: present
+     
+    - name: remove html content
+      ansible.builtin.file:
+        path: /usr/share/nginx/html/
+        state: absent 
+
+    - name: create html directory
+      ansible.builtin.file:
+        path: /usr/share/nginx/html/
+        state: directory
+    
+
+    - name: download and extract frontend content 
+      ansible.builtin.unarchive:
+        src: https://expense-artifacts.s3.amazonaws.com/frontend.zip
+        dest: /usr/share/nginx/html
+        remote_src: yes
+
+    - name: copy expence conf file
+      ansible.builtin.copy:
+        src: expense.conf
+        dest: /etc/nginx/default.d/expense.conf
+
+
+    - name: start nginx service
+      ansible.builtin.systemd_service:
+        name: nginx
+        enabled: true
+        state: restarted
