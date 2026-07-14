@@ -52,15 +52,15 @@
           - python3-PyMySQL
         state: present
 
-    - name: load shema
-      ansible.mysql.mysql_db:
-        state: import
+    - name: Import database schema
+      community.mysql.mysql_db:
         name: all
         target: /app/schema/backend.sql
+        state: import
         login_user: "{{ db_user }}"
-        login_password: "{{ db_password }}"
-        login_host: "{{ db_hoste }}"
-    
+        login_password: "{{ db_pass }}"
+        login_host: "{{ db_host }}"
+
     - name: Start backend service
       ansible.builtin.systemd_service:
         name: backend
