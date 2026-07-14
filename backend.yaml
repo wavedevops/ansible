@@ -56,7 +56,7 @@
       ansible.builtin.shell: mysql -h "{{ db_host }}" -u"{{ db_user }}" -p"{{ db_pass }}" < /app/schema/backend.sql
       
       vars:
-        db_host: 172.31.40.76
+        db_host: 172.31.32.106
         db_user: root
         db_pass: ExpenseApp@1
 
