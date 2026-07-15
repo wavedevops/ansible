@@ -10,7 +10,7 @@
 
     - name: key and  key  values ( list)
       ansible.builtin.debug:
-        msg: student name is {{ student_info["name"] }}  #, student class is {{ class }}, student cource {{ cource }}
+        msg: student name is {{ student_info["name"][0] }}  #, student class is {{ class }}, student cource {{ cource }}
       vars:
         student_info:
           name:
