@@ -1,20 +1,30 @@
-- name: sample
+- name: List of maps example
   hosts: localhost
-  tasks:
-    - name: vars key and values (plain)
-      ansible.builtin.debug:
-        msg: student name in class 1st student is  {{ STUDENT1 }}, 2nd student {{ STUDENT2 }}
-      vars: 
-        STUDENT1: john
-        STUDENT2: ramu
+  gather_facts: false
 
-    - name: key and  key  values ( list)
+  vars:
+    students:
+      - name: Hari
+        class: 10
+        course: AWS
+
+      - name: Babu
+        class: 9
+        course: Azure
+
+      - name: Raju
+        class: 8
+        course: GCP
+
+  tasks:
+    - name: Print first student
       ansible.builtin.debug:
-        msg: student name is {{ student_info["name"][0] }}  #, student class is {{ class }}, student cource {{ cource }}
-      vars:
-        student_info:
-          name:
-            - hari
-            - babu
-          class: 10
-          cource: aws
+        msg: "{{ students[0] }}"
+
+    - name: Print first student name
+      ansible.builtin.debug:
+        msg: "{{ students[0].name }}"
+
+    - name: Print second student course
+      ansible.builtin.debug:
+        msg: "{{ students[1].course }}"
