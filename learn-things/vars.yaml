@@ -31,7 +31,7 @@
 
     - name: print all students 
       ansible.builtin.debug:
-        msg: name are {{ item }}
+        msg: students names are {{ item }}
       loop:
         - prasad
         - Hari
