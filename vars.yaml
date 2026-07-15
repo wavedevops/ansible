@@ -1,0 +1,11 @@
+- name: sample
+  hoste: localhost
+  tasks:
+    - name: demo varible
+      ansible.builtin.debug:
+        msg: student name is {{ student_info["name"] }} # , student class is {{ class }}, student cource {{ cource }}
+      vars:
+        student_info:
+          name: hari
+          class: 10
+          cource: aws
