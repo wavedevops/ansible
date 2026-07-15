@@ -28,3 +28,12 @@
     - name: Print second student course
       ansible.builtin.debug:
         msg: "{{ students[1].course }}"
+
+    - name: print all students 
+      ansible.builtin.debug:
+        msg: name are {{ item }}
+      loop:
+        - prasad
+        - Hari
+        - dev
+        - alex
