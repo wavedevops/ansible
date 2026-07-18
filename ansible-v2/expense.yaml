@@ -17,7 +17,7 @@
   hosts: db
   become: true
   roles:
-    - backend
+    - db
 
 - name: backend
   hosts: backend
