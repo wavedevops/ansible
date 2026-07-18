@@ -1,5 +1,8 @@
 - name: frontend
   hosts: localhost
   become: true
-  roles:
-    - frontend  
+  # tasks:  # if we use tasks, we use tasks 
+  roles:    # if we use roles, use roles
+    - frontend
+    - db
+    - backend
