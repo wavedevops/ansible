@@ -21,7 +21,7 @@
 - name: Install node.js Dependencies.
   community.general.npm:
     name: npm
-    path: /app
+    path: "{{ app_path }}"
 
 - name: copy backend service file 
   ansible.builtin.template:
