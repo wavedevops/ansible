@@ -1,0 +1,3 @@
+db_host: db-{{env}}.wavedevops.online
+db_pass: ExpenseApp@1
+db_user: root

@@ -13,21 +13,10 @@
   ansible.builtin.user:
     name: expense
 
-- name: delete application directory 
-  ansible.builtin.file:
-    path: /app
-    state: absent
-
-- name: creating app directory 
-  ansible.builtin.file:
-    path: /app
-    state: directory
-
-- name: download and extract backend content 
-  ansible.builtin.unarchive:
-    src: https://expense-artifacts.s3.amazonaws.com/expense-backend-v2.zip
-    dest: /app
-    remote_src: yes
+- name: import app prerequisites
+  ansible.builtin.import_role:
+    name:  common 
+    tasks_from: app-prerequisites
 
 - name: Install node.js Dependencies.
   community.general.npm:
@@ -44,15 +33,8 @@
     name: mysql
     state: present
 
-
 - name: Load Schema
   ansible.builtin.shell: mysql -h "{{ db_host }}" -u"{{ db_user }}" -p"{{ db_pass }}" < /app/schema/backend.sql
-  
-  # vars:
-  #   db_host: 172.31.32.106
-  #   db_user: root
-  #   db_pass: ExpenseApp@1
-
 
 - name: Start backend service
   ansible.builtin.systemd_service:
