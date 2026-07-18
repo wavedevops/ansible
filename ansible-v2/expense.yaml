@@ -1,8 +1,26 @@
+# - name: expense app playbook
+#   hosts: localhost
+#   become: true
+#   # tasks:  # if we use tasks, we use tasks 
+#   roles:    # if we use roles, use roles
+#     - frontend
+#     - db
+#     - backend
+
 - name: frontend
-  hosts: localhost
+  hosts: frontend
   become: true
-  # tasks:  # if we use tasks, we use tasks 
-  roles:    # if we use roles, use roles
+  roles:
     - frontend
-    - db
+
+- name: db
+  hosts: db
+  become: true
+  roles:
+    - backend
+
+- name: backend
+  hosts: backend
+  become: true
+  roles:
     - backend
