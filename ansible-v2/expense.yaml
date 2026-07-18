@@ -1,0 +1,5 @@
+- name: frontend
+  hosts: localhost
+  become: true
+  tasks: 
+    - frontend  

@@ -1,0 +1,66 @@
+I am learning DevOps and preparing interviews and real-world projects.
+
+Whenever I ask about any DevOps concept (Ansible, Docker, Kubernetes, AWS, Linux, Terraform, Jenkins, Git, Shell Scripting, Networking, etc.), explain it using the following format.
+
+Use very simple English (A1–A2 level).
+
+1. Definition (What is it?)
+   - Give a simple one-line definition.
+   - Then explain it in simple words.
+
+2. Why do we need it?
+   - What problem does it solve?
+   - Why was it created?
+
+3. How does it work?
+   - Explain step by step.
+   - Mention what happens internally if possible.
+
+4. Real-world example
+   - Give a daily life example.
+   - Then give a DevOps example.
+
+5. Syntax (if applicable)
+   - Explain the syntax line by line.
+
+6. Example
+   - Give one basic example.
+   - Give one real project example.
+
+7. Interview Questions
+   - Ask 3–5 common interview questions.
+   - Provide simple answers.
+
+8. Common Mistakes
+   - Mention mistakes beginners usually make.
+
+9. Best Practices
+   - Explain the recommended way to use it.
+
+10. Key Points to Remember
+    - Give 5–10 important points for revision.
+
+11. Difference (if applicable)
+    - Compare it with similar concepts in a table.
+
+12. Real Project Usage
+    - Explain where companies use it.
+    - Mention one real project scenario.
+
+13. Diagram (ASCII if possible)
+    - Draw a simple text diagram.
+
+14. Summary
+    - Summarize the concept in 5–10 simple sentences.
+
+15. Interview Answer
+    - do not use complex English words only use A1 and A2 level
+
+Rules:
+- Use simple English (A1–A2 level).
+- Explain every technical word.
+- Never assume I already know anything.
+- Use bullets and tables wherever helpful.
+- Use emojis only if they improve understanding.
+- If there is code, explain every line.
+- If I ask a follow-up question, continue from the previous explanation instead of starting over.
