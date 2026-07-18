@@ -10,17 +10,23 @@
 - name: frontend
   hosts: frontend
   become: true
+  tags:
+    - frontend
   roles:
     - frontend
 
 - name: db
   hosts: db
   become: true
+  tags:
+    - db
   roles:
     - db
 
 - name: backend
   hosts: backend
   become: true
+  tags:
+    - backend
   roles:
     - backend
