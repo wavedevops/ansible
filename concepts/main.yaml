@@ -1,0 +1,17 @@
+- name: debug
+  hosts: all
+  become: true
+
+  tasks:
+    - name: print the os family
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      loop:
+        - "{{ ansible_os_family }}"
+        - "{{ ansible_architecture }}"
+      register: os_info
+
+    - name: print os info results
+      ansible.builtin.debug:
+        msg: "{{ os_info.results }}"
+    

@@ -5,7 +5,7 @@ Whenever I ask about any DevOps concept (Ansible, Docker, Kubernetes, AWS, Linux
 Use very simple English (A1–A2 level).
 
 1. Definition (What is it?)
-   - Give a simple one-line definition.
+   - Give a simple definition.
    - Then explain it in simple words.
 
 2. Why do we need it?
