@@ -11,7 +11,15 @@
         - "{{ ansible_architecture }}"
       register: os_info
 
-    - name: print os info results
+    # - name: print os info results
+    #   ansible.builtin.debug:
+    #     msg: "{{ os_info.results }}"
+
+- name: conditional task
+  hosts: all    
+  become: true
+  tasks:
+    - name: conditional task based on os family
       ansible.builtin.debug:
-        msg: "{{ os_info.results }}"
-    
+        msg: "This is a RedHat based system"
+      when: ansible_os_family == "RedHat"
