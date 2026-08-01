@@ -450,7 +450,7 @@ or
 
 ---
 
-# Module 13: Registers
+# Module 13: Registers ( variables from running commands )
 
 Capture Output
 

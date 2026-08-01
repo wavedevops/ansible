@@ -1,0 +1,14 @@
+- name: variables from running commands
+  hosts: localhost
+  
+  become: true
+  
+  tasks:
+    - name: ip of the manage nodes
+      ansible.builtin.debug:
+        msg: "{{ ansible_all_ipv4_addresses }}"
+      register: ip
+    
+    - name: Print the output
+      ansible.builtin.debug:
+        msg: "{{ ip.msg }}"
