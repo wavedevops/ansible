@@ -8,7 +8,11 @@
       ansible.builtin.command: pig
       register: output
       ignore_errors: true
-
+    
+    - name: Show all output
+      ansible.builtin.debug:
+        var: output
+    
     - name: Print the output
       ansible.builtin.debug:
         msg: "{{ item }}"
