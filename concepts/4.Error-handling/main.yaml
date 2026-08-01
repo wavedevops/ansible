@@ -1,16 +1,18 @@
-- name: Error handiling
+---
+- name: Error handling
   hosts: localhost
   become: true
+
   tasks:
-    - name: handel a error
-      ansible.builtin.command: pig # this is wrong command
+    - name: Handle an error
+      ansible.builtin.command: pig
       register: output
-      ignore_errors: true # if any error comes then skip  and  execute another task  
-    
-    - name: print the output
+      ignore_errors: true
+
+    - name: Print the output
       ansible.builtin.debug:
-        mag: "{{ item }}"  
+        msg: "{{ item }}"
       loop:
         - "RC: {{ output.rc }}"
         - "STDOUT: {{ output.stdout }}"
-        - "STDERRR: {{ output.stderr }}"
+        - "STDERR: {{ output.stderr }}"
