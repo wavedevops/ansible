@@ -20,7 +20,22 @@
     - name: Run hostname command
       ansible.builtin.command: hostname
       register: result
+    
+    # varible
 
-    - name: Print return code
+    - name: Print command results
       ansible.builtin.debug:
-        msg: "{{ result.rc }}"
+        msg:
+          - "Return Code: {{ result.rc }}"
+          - "Standard Output: {{ result.stdout }}"
+          - "Standard Error: {{ result.stderr }}"
+
+    # loop
+    - name: Print all values
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      loop:
+        - "RC: {{ result.rc }}"
+        - "STDOUT: {{ result.stdout }}"
+        - "STDERR: {{ result.stderr }}"
+    
