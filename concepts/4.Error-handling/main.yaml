@@ -9,7 +9,8 @@
     
     - name: print the output
       ansible.builtin.debug:
-        mag:  
+        mag: "{{  item }}"  
+        loop:
           - "{{ output.rc }}"
           - "{{ output.stdout }}"
           - "{{ output.stderr }}"
