@@ -10,17 +10,17 @@
             name: nginx
             state: present
         
-        # # it does not have in my repo so thst  i get error it is executeing failuer then goto rescue
-        # - name: Copy Nginx configuration
-        #   ansible.builtin.copy:
-        #     src: nginx.conf
-        #     dest: /etc/nginx/nginx.conf
+        # it does not have in my repo so thst  i get error it is executeing failuer then goto rescue
+        - name: Copy Nginx configuration
+          ansible.builtin.copy:
+            src: nginx.conf
+            dest: /etc/nginx/nginx.conf
 
-        # - name: Start Nginx
-        #   ansible.builtin.service:
-        #     name: nginx
-        #     state: started
-        #     enabled: true
+        - name: Start Nginx
+          ansible.builtin.service:
+            name: nginx
+            state: started
+            enabled: true
 
       rescue:
 
