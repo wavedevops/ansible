@@ -1,5 +1,5 @@
----
-- hosts: webservers
+- name: web-setup
+  hosts: loacalhoste
   become: true
 
   tasks:
