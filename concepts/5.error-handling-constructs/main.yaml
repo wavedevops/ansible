@@ -1,0 +1,40 @@
+---
+- hosts: webservers
+  become: true
+
+  tasks:
+    - block:
+
+        - name: Install Nginx
+          ansible.builtin.dnf:
+            name: nginx
+            state: present
+        
+        # it does not have in my repo so thst  i get error it is executeing failuer then goto rescue
+        - name: Copy Nginx configuration
+          ansible.builtin.copy:
+            src: nginx.conf
+            dest: /etc/nginx/nginx.conf
+
+        - name: Start Nginx
+          ansible.builtin.service:
+            name: nginx
+            state: started
+            enabled: true
+
+      rescue:
+
+        - name: Remove Nginx if deployment failed
+          ansible.builtin.dnf:
+            name: nginx
+            state: absent
+
+        - name: Print failure message
+          ansible.builtin.debug:
+            msg: "Nginx deployment failed and rollback completed."
+
+      always:
+
+        - name: Show deployment completed
+          ansible.builtin.debug:
+            msg: "Deployment process finished."
